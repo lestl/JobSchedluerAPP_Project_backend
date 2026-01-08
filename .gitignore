@@ -449,4 +449,4 @@ buck-out/
 pyvenv.cfg
 pip-selfcheck.json
 
-# End of https://www.toptal.com/developers/gitignore/api/python,venv,dotenv,reactnative,react
+# End of https://www.toptal.com/developers/gitignore/api/python,venv,dotenv,reactnative,reactr
