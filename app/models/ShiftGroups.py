@@ -6,7 +6,7 @@ class ShiftGroup(Base):
     __tablename__ = "shiftgroups"
 
     id = Column(Integer, primary_key=True, index=True)
-    department_id = Column(Integer, ForeignKey("department_id"), description="Relationship on 1:N with department" )
+    department_id = Column(Integer, ForeignKey("department.id"), description="Relationship on 1:N with department" )
     name = Column(String, min_length = 1, max_length = 10, nullable=False, description="The A group, B group...")
     color = Column(String, default="#FFFFFF", description="Color Code. Display the UI/Calender's with a color EX)#ffffff") #null일 경우 기본 색상 지정
 

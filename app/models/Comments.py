@@ -9,7 +9,7 @@ class Comment(Base):
     write_date_time = Column(DateTime, nullable=False, description="Writed time")
     employee_id = Column(Integer, ForeignKey("employees.id"), description="A employee who writen")
     notification_id = Column(Integer, ForeignKey("notifications.id"), description="Specific notification")
-    contens = Column(Text, nullable=False, description="comments contens")
+    contens = Column(Text, nullable=False, description="comments contents")
 
     employee = relationship("Employee", backref="employees")
-    notification = relationship("Notification", backef="notifications")
+    notification = relationship("Notification", backref="notifications")
