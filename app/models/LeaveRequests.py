@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, Enum as SAEnum, DateTime, Date, Text, ForeignKey 
 from sqlalchemy.orm import relationship
-from app.db.base import Base
+from app.db import Base
 from Enums import Leave_RequestRole
 
 class Leave_Request(Base):

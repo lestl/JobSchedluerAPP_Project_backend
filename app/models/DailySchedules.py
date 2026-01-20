@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, Enum as SAEnum, Date, ForeignKey, UniqueConstraint
 from sqlalchemy.orm import relationship
-from app.db.base import Base
+from app.db import Base
 from Enums import Daily_ScheduleRole
 
 class   Daily_Schedule(Base):

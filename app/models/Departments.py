@@ -1,5 +1,5 @@
 from sqlalchemy import Column, Integer, String
-from app.db.base import Base
+from app.db import Base
 
 class Department(Base):
     __tablename__ = "departments" # __tablename__  you can use it when you set the table name

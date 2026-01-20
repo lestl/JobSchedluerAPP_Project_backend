@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from app.core.config import settings # config.py에서 생성한 settings 인스턴스 임포트
+from app.core import settings # config.py에서 생성한 settings 인스턴스 임포트
 
 st = settings()
 

@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, Date, Text, ForeignKey
 from sqlalchemy.orm import relationship
-from app.db.base import Base
+from app.db import Base
 
 class Notification(Base):
     __tablename__ = "notifications"
