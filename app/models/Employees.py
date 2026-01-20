@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Enum as SAEnum, DateTime, Foreign_Key
+from sqlalchemy import Column, Integer, String, Enum as SAEnum, DateTime, ForeignKey
 from sqlalchemy.orm import relationship
 from app.db.base import Base
 from Enums import EmployeeRole
@@ -10,8 +10,8 @@ class Employee(Base):
     id = Column(Integer, primary_key=True, index=True)
     email = Column(String(100), unique=True, index=True, description="login email", nullable=False)
     hashed_password = Column(String(255), nullable=False)
-    department_id = Column(Integer, Foreign_Key("department.id"), description="What you blong dpartment")
-    shift_group_id = Column(Integer, Foreign_Key("shiftgroup.id"), description="Your department Now", nullable=True)
+    department_id = Column(Integer, ForeignKey("department.id"), description="What you blong department")
+    shift_group_id = Column(Integer, ForeignKey("shiftgroup.id"), description="Your department Now", nullable=True)
     #shift는 나중에 등록하기 때문에 null 허용
     name = Column(String, description="Employee's Name", nullable=False)
     rank = Column(String, description="Your Rank in the office", nullable=False)

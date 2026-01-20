@@ -7,7 +7,7 @@ class Leave_Request(Base):
     __tablename__ = "leaverequests"
 
     id = Column(Integer, primary_key=True, index=True)
-    employee_id = Column(Integer, ForeignKey("Employee.id"), description="A Employee Who requested")
+    employee_id = Column(Integer, ForeignKey("employee.id"), description="A Employee Who requested")
     apply_date = Column(DateTime, description="A Datetime When requested", nullable=False)
     target_date = Column(Date, description="A Date Whe using a leave", nullable=False)
     reason = Column(Text, default="개인 사유", description="The reason for using leave")
