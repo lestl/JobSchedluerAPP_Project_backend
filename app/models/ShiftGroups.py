@@ -6,9 +6,9 @@ class ShiftGroup(Base):
     __tablename__ = "shiftgroups"
 
     id = Column(Integer, primary_key=True, index=True)
-    department_id = Column(Integer, ForeignKey("department.id"), description="Relationship on 1:N with department" )
-    name = Column(String, min_length = 1, max_length = 10, nullable=False, description="The A group, B group...")
-    color = Column(String, default="#FFFFFF", description="Color Code. Display the UI/Calender's with a color EX)#ffffff") #null일 경우 기본 색상 지정
+    department_id = Column(Integer, ForeignKey("departments.id"), comment="Relationship on 1:N with department" )
+    name = Column(String(30), min_length = 1, max_length = 10, nullable=False, comment="The A group, B group...")
+    color = Column(String(20), default="#FFFFFF", comment="Color Code. Display the UI/Calender's with a color EX)#ffffff") #null일 경우 기본 색상 지정
 
     employee = relationship("Employee", backref="employees")
     #backref = 이걸 설정함으로  만든 employees 객체를 통해 통해 바로 Employees 테이블의 속성을 사용할 수 있다.

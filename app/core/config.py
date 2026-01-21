@@ -1,21 +1,22 @@
-from pydantic_settings import BaseSettings, SettingsConfigDict, Field
-from functools import lru_cache
+from pydantic import Field
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 class Settings(BaseSettings):
-    db_host : str = Field(default="127.0.0.1", alias="DB_URL")
-    db_port : str = Field(default="3306", alias="DB_PORT")
-    db_name : str = Field(alias="DB_NAME")
-    db_user : str = Field(alias="DB_USER")
-    db_pass : str = Field(alias="DB_PASSWD")
-    db_type : str = Field(default="mysql+pymysql", alias="DB_TYPE")
+    # session.py와 변수명을 맞추기 위해 대문자로 정의합니다.
+    # alias는 .env 파일에 적힌 키 값(변수명)입니다.
+    
+    DB_HOST: str = Field("127.0.0.1", alias="DB_HOST")  # .env의 DB_HOST 값을 읽어 DB_HOST에 저장
+    DB_PORT: int = Field(3306, alias="DB_PORT")
+    DB_NAME: str = Field("shift_db", alias="DB_NAME")
+    DB_USER: str = Field("root", alias="DB_USER")
+    DB_PASSWORD: str = Field("password", alias="DB_PASSWD") # .env엔 DB_PASSWD, 코드에선 DB_PASSWORD
 
-    model_config = {
-        "env_file": ".env",
-        "env_file_encoding": "utf-8",
-        "case_sensitive": False # 대소문자 구분 안 함 (선택 사항)
-    }
+    # Pydantic V2 설정 방식
+    model_config = SettingsConfigDict(
+        env_file=".env",
+        env_file_encoding="utf-8",
+        extra="ignore" # .env에 정의되지 않은 값이 있어도 에러 내지 않음
+    )
 
-@lru_cache
-def get_settings() -> Settings:
-    """Provides a cached singleton instance of the settings."""
-    return Settings()
+# [핵심] 여기서 클래스를 실행해 객체를 만들어야 'import settings'가 작동합니다.
+settings = Settings()

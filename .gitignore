@@ -4,12 +4,15 @@
 ### dotenv ###
 .env
 
+
+
 ### Python ###
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
-
+testdb.py
+createdb.py
 # C extensions
 *.so
 
