@@ -1,9 +1,9 @@
 from sqlalchemy import Column, Integer, String, Enum as SAEnum, Date, ForeignKey, UniqueConstraint
 from sqlalchemy.orm import relationship
-from app.db import Base
-from app.models.Enums import Daily_ScheduleRole
+from db import Base
+from models.Enums import Daily_ScheduleRole
 
-class   DailySchedule(Base):
+class  DailySchedule(Base):
     __tablename__ = "dailyschedules"
 
     id = Column(Integer, primary_key=True, index=True)
@@ -15,4 +15,4 @@ class   DailySchedule(Base):
     __table_args__ = (
         UniqueConstraint('date', 'employee_id', name='uq_isone_date_in_one_employee'), #복합 제약조건 걸어서 date와 employee가 합쳐져 Unique해야함
     )
-    employee = relationship("Employee", backref="employees")
+    employee = relationship("Employee", backref="daily_schedules")

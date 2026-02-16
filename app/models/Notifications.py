@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, Date, Text, ForeignKey
 from sqlalchemy.orm import relationship
-from app.db import Base
+from db import Base
 
 class Notification(Base):
     __tablename__ = "notifications"
@@ -11,4 +11,4 @@ class Notification(Base):
     title = Column(String(100), nullable=False, comment="Notification's title")
     employee_id = Column(Integer, ForeignKey("employees.id"), comment="The employee who writed (Only Manager)")
 
-    employee = relationship("Employee", backref="employees")
+    employee = relationship("Employee", backref="notifications")

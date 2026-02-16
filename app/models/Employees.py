@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, String, Enum as SAEnum, DateTime, ForeignKey
 from sqlalchemy.orm import relationship
-from app.db import Base
-from app.models.Enums import EmployeeRole
+from db import Base
+from models.Enums import EmployeeRole
 
 class Employee(Base):
 
@@ -17,7 +17,7 @@ class Employee(Base):
     rank = Column(String(10), comment="Your Rank in the office", nullable=False)
     role = Column(SAEnum(EmployeeRole), default=EmployeeRole.USER, comment="Manager or User", nullable=False)
     #파이썬 Enum클래스 SAEnum 사용해 EmployeeRole의 값만 받음
-    birth_data = Column(DateTime, nullable=False)
+    birth_date = Column(DateTime, nullable=False)
 
-    department = relationship("Department", backref="departments")
-    shift_group = relationship("Shift_Group", backref="shift_groups")
+    department = relationship("Department", backref="employees")
+    shift_group = relationship("ShiftGroup", backref="employees")

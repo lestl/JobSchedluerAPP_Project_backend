@@ -17,3 +17,14 @@ class Daily_ScheduleRole(str, Enum):
     NIGHT = "야간"
     OFF = "비번"
     LEAVE = "연차 및 휴가"
+
+class ShiftGroup(str, Enum):
+    #근무조 그룹
+    GROUP_A = "A조"
+    GROUP_B = "B조"
+    GROUP_C = "C조"
+    
+class Department(str, Enum):
+    #부서
+    HR = "인사부"
+    BDP = "BDP운영팀"

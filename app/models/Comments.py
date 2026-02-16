@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, DateTime, ForeignKey, Text
 from sqlalchemy.orm import relationship
-from app.db import Base
+from db import Base
 
 class Comment(Base):
     __tablename__ = "comments"
@@ -11,5 +11,5 @@ class Comment(Base):
     notification_id = Column(Integer, ForeignKey("notifications.id"), comment="Specific notification")
     contens = Column(Text, nullable=False, comment="comments contents")
 
-    employee = relationship("Employee", backref="employees")
-    notification = relationship("Notification", backref="notifications")
+    employee = relationship("Employee", backref="comments")
+    notification = relationship("Notification", backref="comments")

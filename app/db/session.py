@@ -4,10 +4,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from urllib.parse import quote_plus  # [추가] URL 인코딩용 라이브러리
 
 # 설정 불러오기
-try:
-    from app.core.config import settings
-except ImportError:
-    from app.core import settings
+from core.config import settings
 
 # [핵심 해결책]
 # 비밀번호에 '@', '#', ':' 같은 특수문자가 섞여있으면 SQLAlchemy가 주소를 잘못 해석합니다.
