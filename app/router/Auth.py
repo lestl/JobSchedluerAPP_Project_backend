@@ -28,12 +28,12 @@ def check_registered_user_verify(email: str, db: Session):
         return False  # 이미 등록된 사용자
     return True  # 등록되지 않은 사용자
 
-def check_password_verify(password: str, check_password: str):
-    # 비밀번호 검증 로직 구현 ------------------------------------🔽
-    if password != check_password:
-        return False  # 비밀번호와 확인 비밀번호가 일치하지 않음
+# def check_password_verify(password: str, check_password: str):
+#     # 비밀번호 검증 로직 구현 ------------------------------------🔽
+#     if password != check_password:
+#         return False  # 비밀번호와 확인 비밀번호가 일치하지 않음
     
-    return password == check_password  # 1차 비밀번호 회원가입 시 검증
+#     return password == check_password  # 1차 비밀번호 회원가입 시 검증
 
 
 @router.post("/social-signup", status_code=status.HTTP_201_CREATED)
