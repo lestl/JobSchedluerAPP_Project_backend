@@ -5,11 +5,20 @@ class Settings(BaseSettings):
     # session.py와 변수명을 맞추기 위해 대문자로 정의합니다.
     # alias는 .env 파일에 적힌 키 값(변수명)입니다.
     
+    # 데이터베이스 설정 ----------------------------------------------------🔽
     DB_HOST: str = Field("127.0.0.1", alias="DB_HOST")  # .env의 DB_HOST 값을 읽어 DB_HOST에 저장
     DB_PORT: int = Field(3306, alias="DB_PORT")
     DB_NAME: str = Field("shift_db", alias="DB_NAME")
     DB_USER: str = Field("root", alias="DB_USER")
     DB_PASSWORD: str = Field("password", alias="DB_PASSWD") # .env엔 DB_PASSWD, 코드에선 DB_PASSWORD
+    
+    # Google OAuth2 설정 ----------------------------------------------------🔽
+    GOOGLE_CLIENT_ID: str = Field(..., alias="GOOGLE_OAUTH_CLIENT_ID")
+    GOOGLE_CLIENT_SECRET: str = Field(..., alias="GOOGLE_OAUTH_CLIENT_SECRET")
+    GOOGLE_REDIRECT_URI: str = Field(..., alias="GOOGLE_OAUTH_REDIRECT_URI")
+    
+    # JWT 설정 ----------------------------------------------------🔽
+    JWT_SECRET_KEY: str = Field(..., alias="JWT_SECRET_KEY")
 
     # Pydantic V2 설정 방식
     model_config = SettingsConfigDict(

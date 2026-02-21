@@ -1,3 +1,4 @@
+from typing import Optional
 from sqlalchemy import Column, Integer, String, Enum as SAEnum, DateTime, ForeignKey
 from sqlalchemy.orm import relationship
 from db import Base
@@ -9,7 +10,7 @@ class Employee(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     email = Column(String(100), unique=True, index=True, comment="login email", nullable=False)
-    hashed_password = Column(String(255), nullable=False)
+    hashed_password = Column(String(255), comment="Hashed password for authentication", nullable=True)
     department_id = Column(Integer, ForeignKey("departments.id"), comment="What you blong department")
     shift_group_id = Column(Integer, ForeignKey("shiftgroups.id"), comment="Your department Now", nullable=True)
     #shift는 나중에 등록하기 때문에 null 허용
@@ -21,3 +22,4 @@ class Employee(Base):
 
     department = relationship("Department", backref="employees")
     shift_group = relationship("ShiftGroup", backref="employees")
+    

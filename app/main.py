@@ -1,21 +1,21 @@
 # 라이브러리 임포트
-from fastapi import FastAPI, Depends, APIRouter, HTTPException
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from sqlalchemy.orm import Session
+from uvicorn.middleware.proxy_headers import ProxyHeadersMiddleware
 
-# DB 모델 임포트
-from db.session import get_db
-from models import Employee, Department, ShiftGroup, DailySchedule, LeaveRequest, Notification, Comment
 
 #router 임포트
 from router.Check import router as check_router
 from router.Auth import router as auth_router
+from router.Google_Login import router as google_login_router
 
 app = FastAPI(
     title="Job Scheduler AOO API",
     description="API for scheduling and managing jobs",
     version="1.0.0"
 )
+
+app.add_middleware(ProxyHeadersMiddleware, trusted_hosts="*")
 
 # Add CORS middleware
 app.add_middleware(
@@ -27,7 +27,8 @@ app.add_middleware(
 )
 
 app.include_router(check_router)
-app.include_router(auth_router)
+app.include_router(auth_router, prefix="/api/v1/auth")
+app.include_router(google_login_router, prefix="/api/v1/auth")
 
 
 if __name__ == "__main__":
